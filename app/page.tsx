@@ -6,9 +6,14 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle } from "lucide-react";
+import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle, Star, Zap } from "lucide-react";
+import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
+  // Placeholder variant IDs (would be fetched from Shopify in a real app)
+  const CUSTOM_RUG_VARIANT_ID = "gid://shopify/ProductVariant/15638708912209"; 
+  const READY_TO_SHIP_VARIANT_ID = "gid://shopify/ProductVariant/15631681880145";
+
   return (
     <div className="min-h-screen bg-background font-sans antialiased">
       {/* Navigation */}
@@ -18,101 +23,129 @@ export default function Home() {
             <Image src="/images/logo.png" alt="Rugly Logo" width={120} height={40} className="h-8 w-auto object-contain" />
           </div>
           <nav className="hidden md:flex gap-8 text-sm font-semibold uppercase tracking-wider">
-            <a href="#how-it-works" className="transition-colors hover:text-primary">How it Works</a>
-            <a href="#order-ways" className="transition-colors hover:text-primary">Order</a>
-            <a href="#customize" className="transition-colors hover:text-primary">Customize</a>
+            <a href="#rugly-premium" className="transition-colors hover:text-primary">Rugly Premium</a>
+            <a href="#ready-to-ship" className="transition-colors hover:text-primary">Ready to Ship</a>
+            <a href="#crugly" className="transition-colors hover:text-primary">Crugly (Custom)</a>
             <a href="#about" className="transition-colors hover:text-primary">About</a>
           </nav>
           <div className="flex items-center gap-4">
             <Button variant="ghost" size="sm" className="hidden sm:flex">Login</Button>
-            <Button size="sm" className="bg-primary hover:bg-primary/90">Get Started</Button>
+            <Button size="sm" className="bg-primary hover:bg-primary/90">Shop Now</Button>
           </div>
         </div>
       </header>
 
       <main>
-        {/* Hero Section - Hybrid Vibe */}
+        {/* Hero Section */}
         <section className="relative py-24 lg:py-40 overflow-hidden bg-slate-950 text-white">
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-6xl lg:text-9xl font-black tracking-tighter mb-8 leading-[0.85]">
-                CUSTOM-PAINTED RUGS.<br />
-                <span className="text-primary">NO FLUFF. NO FILTERS.</span>
+                RUGLY.<br />
+                <span className="text-primary">ART FOR YOUR FLOOR.</span>
               </h1>
               <p className="text-xl lg:text-2xl text-slate-400 mb-10 max-w-2xl mx-auto font-medium leading-relaxed">
-                You send the image. We cut the stencil and paint it onto a real rug. 
-                Not printed. Not woven. <span className="text-white underline decoration-primary decoration-4 underline-offset-4">Painted by hand.</span>
+                Hand-painted rugs from the studio of Ryan Hensley. 
+                Choose a <span className="text-white font-bold">Rugly Premium</span> original or create your own <span className="text-primary font-bold">Crugly</span>.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" className="h-16 px-10 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/20" asChild>
-                  <a href="#customize">UPLOAD IMAGE · FROM $199</a>
+                  <a href="#rugly-premium">SHOP PREMIUM ORIGINALS</a>
                 </Button>
-                <Button size="lg" variant="outline" className="h-16 px-10 text-xl font-black tracking-widest border-2 border-white/20 hover:bg-white/10">
-                  CUSTOM / SURPRISE ME
+                <Button size="lg" variant="outline" className="h-16 px-10 text-xl font-black tracking-widest border-2 border-white/20 hover:bg-white/10" asChild>
+                  <a href="#crugly">CREATE A CRUGLY (CUSTOM)</a>
                 </Button>
               </div>
             </div>
           </div>
-          {/* Industrial background elements */}
           <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-primary/20 blur-[150px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
-        {/* Two Ways to Order */}
-        <section id="order-ways" className="py-24 bg-white">
+        {/* Rugly Premium Section */}
+        <section id="rugly-premium" className="py-24 bg-white">
           <div className="container">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl font-black mb-4 tracking-tight uppercase">TWO WAYS TO ORDER</h2>
-              <div className="h-2 w-24 bg-primary mx-auto" />
+            <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+              <div>
+                <div className="flex items-center gap-2 mb-4">
+                  <Star className="h-6 w-6 text-primary fill-primary" />
+                  <span className="font-black tracking-[0.3em] text-sm uppercase text-primary">The Original Line</span>
+                </div>
+                <h2 className="text-5xl font-black tracking-tight uppercase">RUGLY PREMIUM</h2>
+                <p className="text-xl text-muted-foreground mt-4 max-w-xl">
+                  One-of-a-kind pieces hand-painted by Ryan Hensley. These are the studio originals.
+                </p>
+              </div>
+              <Button variant="outline" className="font-black tracking-widest border-2">VIEW ALL ORIGINALS</Button>
             </div>
-            <div className="grid md:grid-cols-2 gap-12">
-              <Card className="p-10 border-4 border-slate-100 hover:border-primary/20 transition-all group">
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">UPLOAD & ORDER</h3>
-                <p className="text-lg text-muted-foreground mb-8 font-medium">For bold, graphic designs where you know exactly what you want.</p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Upload your image",
-                    "Select size & base color",
-                    "1-color stencil included",
-                    "Optional 2-color overlay",
-                    "Preview before paying"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
-                      <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="w-full h-14 text-lg font-black tracking-widest" asChild>
-                  <a href="#customize">UPLOAD IMAGE</a>
-                </Button>
-              </Card>
-
-              <Card className="p-10 border-4 border-slate-950 bg-slate-950 text-white group">
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">CUSTOM / SURPRISE ME</h3>
-                <p className="text-lg text-slate-400 mb-8 font-medium">You want taste, interpretation, and creative decisions made for you.</p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Upload inspiration or nothing at all",
-                    "Room photo recommended",
-                    "We design it",
-                    "You approve the quote",
-                    "We build it"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-bold text-slate-200">
-                      <Sparkles className="h-5 w-5 text-primary" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full h-14 text-lg font-black tracking-widest border-white/20 hover:bg-white/10">
-                  REQUEST CUSTOM RUG
-                </Button>
-              </Card>
+            
+            <div className="grid md:grid-cols-3 gap-8">
+              {[
+                { title: "Studio Original #042", size: "6x9", price: "$899", tag: "1 of 1" },
+                { title: "Abstract Series: Detroit", size: "5x8", price: "$749", tag: "Limited" },
+                { title: "The SAIC Collection #01", size: "9x12", price: "$1,299", tag: "Artist Proof" }
+              ].map((rug, i) => (
+                <Card key={i} className="overflow-hidden border-none shadow-xl group cursor-pointer">
+                  <div className="aspect-[4/5] bg-slate-100 relative">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-20 grayscale">
+                      <Image src="/images/logo.png" alt="Rugly" width={200} height={200} className="object-contain" />
+                    </div>
+                    <div className="absolute top-4 left-4 bg-primary text-white px-3 py-1 rounded-full text-xs font-black tracking-widest uppercase">
+                      {rug.tag}
+                    </div>
+                  </div>
+                  <CardContent className="p-6">
+                    <h3 className="text-xl font-black uppercase tracking-tighter mb-1">{rug.title}</h3>
+                    <p className="text-muted-foreground font-bold text-sm mb-4">{rug.size} · Hand-Painted Canvas</p>
+                    <div className="flex justify-between items-center">
+                      <span className="text-2xl font-black text-primary">{rug.price}</span>
+                      <form action={async () => {
+                        'use server';
+                        const url = await createCartAndRedirect(READY_TO_SHIP_VARIANT_ID);
+                        // In a real app, we'd use redirect() from next/navigation
+                      }}>
+                        <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
+                      </form>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* Customization Tool */}
-        <section id="customize" className="py-24 bg-slate-50">
+        {/* Ready to Ship Section */}
+        <section id="ready-to-ship" className="py-24 bg-slate-50">
+          <div className="container">
+            <div className="flex items-center gap-4 mb-12">
+              <Zap className="h-8 w-8 text-primary fill-primary" />
+              <h2 className="text-4xl font-black tracking-tight uppercase">READY TO SHIP NOW</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                { title: "Pan Am Vintage Logo", desc: "A classic aviation icon, hand-painted with precision on a low-pile base.", price: "$299", image: "/images/ready-to-ship-1.jpg" },
+                { title: "Madonna Portrait", desc: "Bold, high-contrast pop art portrait. A statement piece for any room.", price: "$349", image: "/images/ready-to-ship-2.jpg" }
+              ].map((item, i) => (
+                <Card key={i} className="overflow-hidden border-4 border-white shadow-lg flex flex-col md:flex-row gap-0 items-stretch">
+                  <div className="w-full md:w-1/2 aspect-square relative bg-slate-200">
+                    <Image src={item.image} alt={item.title} fill className="object-cover" />
+                  </div>
+                  <div className="flex-1 p-8 flex flex-col justify-center">
+                    <h3 className="text-2xl font-black uppercase tracking-tighter mb-2">{item.title}</h3>
+                    <p className="text-muted-foreground font-medium mb-6">{item.desc}</p>
+                    <div className="flex items-center gap-6">
+                      <span className="text-2xl font-black text-primary">{item.price}</span>
+                      <Button className="font-black tracking-widest">GRAB IT</Button>
+                    </div>
+                  </div>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Crugly (Custom) Section */}
+        <section id="crugly" className="py-24 bg-white">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               {/* Preview Area */}
@@ -122,7 +155,7 @@ export default function Home() {
                   <Card className="relative overflow-hidden border-none shadow-2xl">
                     <CardHeader className="bg-white border-b">
                       <div className="flex justify-between items-center">
-                        <CardTitle className="text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground">Live Preview</CardTitle>
+                        <CardTitle className="text-xs uppercase tracking-[0.2em] font-bold text-muted-foreground">Crugly Live Preview</CardTitle>
                         <div className="flex gap-1">
                           <div className="h-2 w-2 rounded-full bg-red-400" />
                           <div className="h-2 w-2 rounded-full bg-yellow-400" />
@@ -131,20 +164,15 @@ export default function Home() {
                       </div>
                     </CardHeader>
                     <CardContent className="p-0 aspect-square relative bg-[#F5F5DC] flex items-center justify-center">
-                      {/* Rug Base */}
                       <div className="w-[85%] h-[85%] bg-white shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-slate-200/50 relative">
-                        {/* Texture Overlay */}
                         <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
-                        
                         <div className="text-center p-12 relative z-10">
                           <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                             <Upload className="h-10 w-10 text-primary" />
                           </div>
-                          <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Upload Design</p>
+                          <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Upload Your Art</p>
                         </div>
                       </div>
-                      
-                      {/* Floating Badge */}
                       <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-black border shadow-xl flex items-center gap-2">
                         <div className="h-3 w-3 rounded-full bg-primary" />
                         5' x 7' • WHITE BASE
@@ -172,8 +200,11 @@ export default function Home() {
               {/* Configuration Form */}
               <div className="space-y-12">
                 <div>
-                  <h2 className="text-4xl font-bold mb-4 tracking-tight">CONFIGURE YOUR RUG</h2>
-                  <p className="text-lg text-muted-foreground font-medium">Follow the steps below to create your custom piece.</p>
+                  <div className="flex items-center gap-2 mb-4">
+                    <span className="font-black tracking-[0.3em] text-sm uppercase text-primary">Custom Creation</span>
+                  </div>
+                  <h2 className="text-5xl font-black tracking-tight uppercase">CREATE A CRUGLY</h2>
+                  <p className="text-lg text-muted-foreground font-medium mt-4">Your design, hand-painted on our premium base rugs.</p>
                 </div>
 
                 <div className="space-y-10">
@@ -271,79 +302,15 @@ export default function Home() {
                     </Tabs>
                   </div>
 
-                  <Button className="w-full h-16 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/30 rounded-2xl">
-                    <ShoppingCart className="mr-3 h-6 w-6" /> ADD TO CART
-                  </Button>
+                  <form action={async () => {
+                    'use server';
+                    const url = await createCartAndRedirect(CUSTOM_RUG_VARIANT_ID);
+                  }}>
+                    <Button className="w-full h-16 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/30 rounded-2xl">
+                      <ShoppingCart className="mr-3 h-6 w-6" /> ADD TO CART
+                    </Button>
+                  </form>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Read This Before Ordering */}
-        <section className="py-24 bg-slate-950 text-white">
-          <div className="container">
-            <div className="max-w-4xl mx-auto">
-              <div className="flex items-center gap-4 mb-12">
-                <AlertTriangle className="h-10 w-10 text-primary" />
-                <h2 className="text-4xl font-black tracking-tight uppercase">READ THIS BEFORE ORDERING</h2>
-              </div>
-              <div className="grid md:grid-cols-2 gap-12">
-                <div className="space-y-8">
-                  <div className="flex gap-4">
-                    <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
-                    <p className="text-lg text-slate-300 font-medium">Rugs are <span className="text-white font-bold">painted, not printed</span>. This is hand work.</p>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
-                    <p className="text-lg text-slate-300 font-medium"><span className="text-white font-bold">Bold designs</span> work best. High contrast = clean edges.</p>
-                  </div>
-                  <div className="flex gap-4">
-                    <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
-                    <p className="text-lg text-slate-300 font-medium">Thin lines & gradients may be <span className="text-white font-bold">simplified</span> for the stencil.</p>
-                  </div>
-                </div>
-                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
-                  <p className="text-xl text-slate-200 font-medium leading-relaxed italic">
-                    "The preview is accurate — but this is still hand work. Each rug has character. That’s the point."
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Base Rug Details */}
-        <section className="py-24 bg-white">
-          <div className="container">
-            <div className="grid lg:grid-cols-2 gap-20 items-center">
-              <div className="space-y-12">
-                <h2 className="text-4xl font-black tracking-tight uppercase">BASE RUG DETAILS</h2>
-                <div className="grid grid-cols-2 gap-8">
-                  {[
-                    { icon: ShieldCheck, title: "LOW-PILE", desc: "Flat weave for clean paint lines" },
-                    { icon: Sparkles, title: "MATTE FINISH", desc: "No glare, just pure color" },
-                    { icon: Info, title: "WASHABLE", desc: "Easy to clean and maintain" },
-                    { icon: CheckCircle2, title: "NON-SLIP", desc: "Stays exactly where you put it" }
-                  ].map((detail, i) => (
-                    <div key={i} className="space-y-2">
-                      <detail.icon className="h-8 w-8 text-primary mb-2" />
-                      <h4 className="font-black text-sm tracking-widest uppercase">{detail.title}</h4>
-                      <p className="text-muted-foreground font-medium text-sm">{detail.desc}</p>
-                    </div>
-                  ))}
-                </div>
-                <div className="pt-8 border-t">
-                  <p className="font-black text-xs tracking-[0.2em] mb-4 uppercase text-muted-foreground">Available Sizes</p>
-                  <div className="flex flex-wrap gap-3">
-                    {["4×6", "5×8", "6×9", "5′ ROUND"].map((size) => (
-                      <span key={size} className="px-4 py-2 rounded-full bg-slate-100 font-black text-sm">{size}</span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="aspect-square rounded-[40px] bg-slate-100 overflow-hidden relative">
-                <Image src="/images/logo.png" alt="Rug Detail" fill className="object-contain p-20 opacity-20 grayscale" />
               </div>
             </div>
           </div>
@@ -360,20 +327,20 @@ export default function Home() {
                 </h2>
                 <div className="space-y-6 text-lg text-slate-400 font-medium leading-relaxed">
                   <p>
-                    Rugly was born from a love for the arts and letters, and a frustration with the lack of truly customized flooring solutions. 
+                    Rugly was born at the intersection of fine art and functional design. With formal training from the **School of the Art Institute of Chicago (S.A.I.C.)**, founder Ryan Hensley brings a gallery-level eye to the most overlooked canvas in your home: the floor.
                   </p>
                   <p>
-                    With formal training from the School of the Art Institute of Chicago, we bring an artist's eye to every piece we create. Every rug is hand-painted in our studio.
+                    We identified a massive gap in the market—flooring was either mass-produced and soulless, or custom-tufted and prohibitively expensive. Rugly is the middle ground. We use high-quality base rugs as our canvas and hand-paint every design in our studio.
                   </p>
                   <p>
-                    We don't just print; we create durable, functional art that transforms your space.
+                    Whether it's a **Rugly Premium** original or a custom **Crugly** of your own design, you're getting a piece of hand-painted art that is built to be lived on.
                   </p>
                 </div>
                 <div className="mt-12 flex items-center gap-6 p-6 rounded-3xl bg-white/5 border border-white/10 w-fit">
                   <div className="h-16 w-16 rounded-2xl bg-primary flex items-center justify-center font-black text-2xl shadow-lg shadow-primary/20">RH</div>
                   <div>
                     <p className="font-bold text-xl">RYAN HENSLEY</p>
-                    <p className="text-sm text-slate-500 font-black tracking-widest">FOUNDER, RUGLY</p>
+                    <p className="text-sm text-slate-500 font-black tracking-widest">FOUNDER & ARTIST</p>
                   </div>
                 </div>
               </div>
@@ -381,7 +348,6 @@ export default function Home() {
                 <div className="aspect-square rounded-[40px] bg-gradient-to-br from-primary/20 to-teal-500/20 border border-white/10 flex items-center justify-center overflow-hidden">
                   <Image src="/images/logo.png" alt="Rugly Brand" width={300} height={300} className="opacity-50 grayscale brightness-200" />
                 </div>
-                {/* Decorative elements */}
                 <div className="absolute -top-10 -right-10 h-40 w-40 bg-primary/20 blur-[80px] rounded-full" />
                 <div className="absolute -bottom-10 -left-10 h-40 w-40 bg-teal-500/20 blur-[80px] rounded-full" />
               </div>
@@ -402,8 +368,9 @@ export default function Home() {
             <div>
               <h4 className="font-black text-xs tracking-[0.2em] mb-6 uppercase">Quick Links</h4>
               <ul className="space-y-4 text-sm font-bold text-muted-foreground">
-                <li><a href="#how-it-works" className="hover:text-primary transition-colors">HOW IT WORKS</a></li>
-                <li><a href="#customize" className="hover:text-primary transition-colors">CUSTOMIZE</a></li>
+                <li><a href="#rugly-premium" className="hover:text-primary transition-colors">RUGLY PREMIUM</a></li>
+                <li><a href="#ready-to-ship" className="hover:text-primary transition-colors">READY TO SHIP</a></li>
+                <li><a href="#crugly" className="hover:text-primary transition-colors">CRUGLY (CUSTOM)</a></li>
                 <li><a href="#about" className="hover:text-primary transition-colors">ABOUT US</a></li>
               </ul>
             </div>

@@ -40,3 +40,14 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  ✓ Compiled / in 48ms
  ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
  GET / 200 in 1227ms
+   Reload env: .env.local
+   Reload env: .env.local
+ ✓ Compiled in 5.3s
+ ✓ Compiled / in 58ms
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET / 200 in 1219ms
+ ✓ Compiled in 219ms
+ ✓ Compiled / in 46ms
+ ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+ GET / 200 in 338ms
+ ✓ Compiled in 532ms
