@@ -6,11 +6,12 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle, Star, Zap } from "lucide-react";
+import { Textarea } from "@/components/ui/textarea";
+import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle, Star, Zap, Mail, MessageSquare } from "lucide-react";
 import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
-  // Placeholder variant IDs (would be fetched from Shopify in a real app)
+  // Placeholder variant IDs
   const CUSTOM_RUG_VARIANT_ID = "gid://shopify/ProductVariant/15638708912209"; 
   const READY_TO_SHIP_VARIANT_ID = "gid://shopify/ProductVariant/15631681880145";
 
@@ -99,13 +100,7 @@ export default function Home() {
                     <p className="text-muted-foreground font-bold text-sm mb-4">{rug.size} · Hand-Painted Canvas</p>
                     <div className="flex justify-between items-center">
                       <span className="text-2xl font-black text-primary">{rug.price}</span>
-                      <form action={async () => {
-                        'use server';
-                        const url = await createCartAndRedirect(READY_TO_SHIP_VARIANT_ID);
-                        // In a real app, we'd use redirect() from next/navigation
-                      }}>
-                        <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
-                      </form>
+                      <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -144,8 +139,61 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Two Ways to Order - Updated with Anchor */}
+        <section id="order-ways" className="py-24 bg-white">
+          <div className="container">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl font-black mb-4 tracking-tight uppercase">TWO WAYS TO ORDER</h2>
+              <div className="h-2 w-24 bg-primary mx-auto" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-12">
+              <Card className="p-10 border-4 border-slate-100 hover:border-primary/20 transition-all group">
+                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">UPLOAD & ORDER (CRUGLY)</h3>
+                <p className="text-lg text-muted-foreground mb-8 font-medium">For bold, graphic designs where you know exactly what you want.</p>
+                <ul className="space-y-4 mb-10">
+                  {[
+                    "Upload your image",
+                    "Select size & base color",
+                    "1-color stencil included",
+                    "Optional 2-color overlay",
+                    "Preview before paying"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
+                      <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
+                    </li>
+                  ))}
+                </ul>
+                <Button className="w-full h-14 text-lg font-black tracking-widest" asChild>
+                  <a href="#crugly">UPLOAD IMAGE</a>
+                </Button>
+              </Card>
+
+              <Card className="p-10 border-4 border-slate-950 bg-slate-950 text-white group">
+                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">CUSTOM / SURPRISE ME</h3>
+                <p className="text-lg text-slate-400 mb-8 font-medium">You want taste, interpretation, and creative decisions made for you.</p>
+                <ul className="space-y-4 mb-10">
+                  {[
+                    "Upload inspiration or nothing at all",
+                    "Room photo recommended",
+                    "We design it",
+                    "You approve the quote",
+                    "We build it"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 font-bold text-slate-200">
+                      <Sparkles className="h-5 w-5 text-primary" /> {item}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full h-14 text-lg font-black tracking-widest border-white/20 hover:bg-white/10" asChild>
+                  <a href="#custom-quote">REQUEST CUSTOM QUOTE</a>
+                </Button>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Crugly (Custom) Section */}
-        <section id="crugly" className="py-24 bg-white">
+        <section id="crugly" className="py-24 bg-slate-50">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               {/* Preview Area */}
@@ -302,15 +350,148 @@ export default function Home() {
                     </Tabs>
                   </div>
 
-                  <form action={async () => {
-                    'use server';
-                    const url = await createCartAndRedirect(CUSTOM_RUG_VARIANT_ID);
-                  }}>
-                    <Button className="w-full h-16 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/30 rounded-2xl">
-                      <ShoppingCart className="mr-3 h-6 w-6" /> ADD TO CART
-                    </Button>
-                  </form>
+                  <Button className="w-full h-16 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/30 rounded-2xl">
+                    <ShoppingCart className="mr-3 h-6 w-6" /> ADD TO CART
+                  </Button>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Custom Quote Form Section */}
+        <section id="custom-quote" className="py-24 bg-white">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <div className="text-center mb-16">
+                <div className="flex items-center justify-center gap-2 mb-4">
+                  <MessageSquare className="h-6 w-6 text-primary fill-primary" />
+                  <span className="font-black tracking-[0.3em] text-sm uppercase text-primary">Surprise Me / Custom</span>
+                </div>
+                <h2 className="text-5xl font-black tracking-tight uppercase">REQUEST A CUSTOM QUOTE</h2>
+                <p className="text-xl text-muted-foreground mt-4">
+                  For when you want taste, interpretation, and creative decisions made for you.
+                </p>
+              </div>
+
+              <Card className="p-8 md:p-12 border-4 border-slate-100 shadow-2xl">
+                <form className="space-y-8">
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <Label htmlFor="name" className="font-black text-xs tracking-widest uppercase">Full Name</Label>
+                      <Input id="name" placeholder="Ryan Hensley" className="h-12 border-2" />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor="email" className="font-black text-xs tracking-widest uppercase">Email Address</Label>
+                      <Input id="email" type="email" placeholder="ryan@example.com" className="h-12 border-2" />
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <Label htmlFor="vision" className="font-black text-xs tracking-widest uppercase">Your Vision / Inspiration</Label>
+                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you're going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-2">
+                      <Label className="font-black text-xs tracking-widest uppercase">Preferred Size</Label>
+                      <Select>
+                        <SelectTrigger className="h-12 border-2">
+                          <SelectValue placeholder="Select a size" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="4x6">4' x 6'</SelectItem>
+                          <SelectItem value="5x8">5' x 8'</SelectItem>
+                          <SelectItem value="6x9">6' x 9'</SelectItem>
+                          <SelectItem value="9x12">9' x 12'</SelectItem>
+                          <SelectItem value="5round">5' Round</SelectItem>
+                          <SelectItem value="other">Other (Specify in vision)</SelectItem>
+                        </SelectContent>
+                      </Select>
+                    </div>
+                    <div className="space-y-2">
+                      <Label className="font-black text-xs tracking-widest uppercase">Upload Inspiration / Room Photo</Label>
+                      <div className="border-2 border-dashed rounded-lg p-4 text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                        <Upload className="h-6 w-6 text-muted-foreground mx-auto mb-2" />
+                        <span className="text-xs font-bold text-muted-foreground uppercase tracking-widest">Click to upload</span>
+                        <Input type="file" className="hidden" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <Button className="w-full h-16 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-xl shadow-primary/20">
+                    SEND REQUEST <ArrowRight className="ml-2 h-6 w-6" />
+                  </Button>
+                </form>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Read This Before Ordering */}
+        <section className="py-24 bg-slate-950 text-white">
+          <div className="container">
+            <div className="max-w-4xl mx-auto">
+              <div className="flex items-center gap-4 mb-12">
+                <AlertTriangle className="h-10 w-10 text-primary" />
+                <h2 className="text-4xl font-black tracking-tight uppercase">READ THIS BEFORE ORDERING</h2>
+              </div>
+              <div className="grid md:grid-cols-2 gap-12">
+                <div className="space-y-8">
+                  <div className="flex gap-4">
+                    <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
+                    <p className="text-lg text-slate-300 font-medium">Rugs are <span className="text-white font-bold">painted, not printed</span>. This is hand work.</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
+                    <p className="text-lg text-slate-300 font-medium"><span className="text-white font-bold">Bold designs</span> work best. High contrast = clean edges.</p>
+                  </div>
+                  <div className="flex gap-4">
+                    <div className="h-2 w-2 rounded-full bg-primary mt-2 shrink-0" />
+                    <p className="text-lg text-slate-300 font-medium">Thin lines & gradients may be <span className="text-white font-bold">simplified</span> for the stencil.</p>
+                  </div>
+                </div>
+                <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
+                  <p className="text-xl text-slate-200 font-medium leading-relaxed italic">
+                    "The preview is accurate — but this is still hand work. Each rug has character. That’s the point."
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Base Rug Details */}
+        <section className="py-24 bg-white">
+          <div className="container">
+            <div className="grid lg:grid-cols-2 gap-20 items-center">
+              <div className="space-y-12">
+                <h2 className="text-4xl font-black tracking-tight uppercase">BASE RUG DETAILS</h2>
+                <div className="grid grid-cols-2 gap-8">
+                  {[
+                    { icon: ShieldCheck, title: "LOW-PILE", desc: "Flat weave for clean paint lines" },
+                    { icon: Sparkles, title: "MATTE FINISH", desc: "No glare, just pure color" },
+                    { icon: Info, title: "WASHABLE", desc: "Easy to clean and maintain" },
+                    { icon: CheckCircle2, title: "NON-SLIP", desc: "Stays exactly where you put it" }
+                  ].map((detail, i) => (
+                    <div key={i} className="space-y-2">
+                      <detail.icon className="h-8 w-8 text-primary mb-2" />
+                      <h4 className="font-black text-sm tracking-widest uppercase">{detail.title}</h4>
+                      <p className="text-muted-foreground font-medium text-sm">{detail.desc}</p>
+                    </div>
+                  ))}
+                </div>
+                <div className="pt-8 border-t">
+                  <p className="font-black text-xs tracking-[0.2em] mb-4 uppercase text-muted-foreground">Available Sizes</p>
+                  <div className="flex flex-wrap gap-3">
+                    {["4×6", "5×8", "6×9", "5′ ROUND"].map((size) => (
+                      <span key={size} className="px-4 py-2 rounded-full bg-slate-100 font-black text-sm">{size}</span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="aspect-square rounded-[40px] bg-slate-100 overflow-hidden relative">
+                <Image src="/images/logo.png" alt="Rugly Detail" fill className="object-contain p-20 opacity-20 grayscale" />
               </div>
             </div>
           </div>
