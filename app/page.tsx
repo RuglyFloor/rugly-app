@@ -1,13 +1,13 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle, Star, Zap, Mail, MessageSquare } from "lucide-react";
+import { Upload, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Info, AlertTriangle, Star, Zap, Mail, MessageSquare } from "lucide-react";
 import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
@@ -59,7 +59,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url(&apos;https://www.transparenttextures.com/patterns/carbon-fibre.png&apos;)]" />
+          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-primary/20 blur-[150px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
@@ -100,7 +100,12 @@ export default function Home() {
                     <p className="text-muted-foreground font-bold text-sm mb-4">{rug.size} · Hand-Painted Canvas</p>
                     <div className="flex justify-between items-center">
                       <span className="text-2xl font-black text-primary">{rug.price}</span>
-                      <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
+                      <form action={async () => {
+                        'use server';
+                        await createCartAndRedirect(READY_TO_SHIP_VARIANT_ID);
+                      }}>
+                        <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
+                      </form>
                     </div>
                   </CardContent>
                 </Card>
@@ -130,7 +135,12 @@ export default function Home() {
                     <p className="text-muted-foreground font-medium mb-6">{item.desc}</p>
                     <div className="flex items-center gap-6">
                       <span className="text-2xl font-black text-primary">{item.price}</span>
-                      <Button className="font-black tracking-widest">GRAB IT</Button>
+                      <form action={async () => {
+                        'use server';
+                        await createCartAndRedirect(READY_TO_SHIP_VARIANT_ID);
+                      }}>
+                        <Button className="font-black tracking-widest">GRAB IT</Button>
+                      </form>
                     </div>
                   </div>
                 </Card>
@@ -160,7 +170,7 @@ export default function Home() {
                     </CardHeader>
                     <CardContent className="p-0 aspect-square relative bg-[#F5F5DC] flex items-center justify-center">
                       <div className="w-[85%] h-[85%] bg-white shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-slate-200/50 relative">
-                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url(&apos;https://www.transparenttextures.com/patterns/felt.png&apos;)]" />
+                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
                         <div className="text-center p-12 relative z-10">
                           <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                             <Upload className="h-10 w-10 text-primary" />
