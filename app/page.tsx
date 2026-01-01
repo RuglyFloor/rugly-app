@@ -149,8 +149,61 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Two Ways to Order */}
+        <section id="order-ways" className="py-24 bg-white">
+          <div className="container">
+            <div className="text-center mb-20">
+              <h2 className="text-4xl font-black mb-4 tracking-tight uppercase">TWO WAYS TO ORDER</h2>
+              <div className="h-2 w-24 bg-primary mx-auto" />
+            </div>
+            <div className="grid md:grid-cols-2 gap-12">
+              <Card className="p-10 border-4 border-slate-100 hover:border-primary/20 transition-all group">
+                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">UPLOAD & ORDER (CRUGLY)</h3>
+                <p className="text-lg text-muted-foreground mb-8 font-medium">For bold, graphic designs where you know exactly what you want.</p>
+                <ul className="space-y-4 mb-10">
+                  {[
+                    "Upload your image",
+                    "Select size & base color",
+                    "1-color stencil included",
+                    "Optional 2-color overlay",
+                    "Preview before paying"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
+                      <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
+                    </li>
+                  ))}
+                </ul>
+                <Button className="w-full h-14 text-lg font-black tracking-widest" asChild>
+                  <a href="#crugly">UPLOAD IMAGE</a>
+                </Button>
+              </Card>
+
+              <Card className="p-10 border-4 border-slate-950 bg-slate-950 text-white group">
+                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">CUSTOM / SURPRISE ME</h3>
+                <p className="text-lg text-slate-400 mb-8 font-medium">You want taste, interpretation, and creative decisions made for you.</p>
+                <ul className="space-y-4 mb-10">
+                  {[
+                    "Upload inspiration or nothing at all",
+                    "Room photo recommended",
+                    "We design it",
+                    "You approve the quote",
+                    "We build it"
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center gap-3 font-bold text-slate-200">
+                      <Sparkles className="h-5 w-5 text-primary" /> {item}
+                    </li>
+                  ))}
+                </ul>
+                <Button variant="outline" className="w-full h-14 text-lg font-black tracking-widest border-white/20 hover:bg-white/10" asChild>
+                  <a href="#custom-quote">REQUEST CUSTOM QUOTE</a>
+                </Button>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* Crugly (Custom) Section */}
-        <section id="crugly" className="py-24 bg-white">
+        <section id="crugly" className="py-24 bg-slate-50">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               {/* Preview Area */}

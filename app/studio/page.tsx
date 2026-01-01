@@ -196,9 +196,15 @@ export default function StudioDashboard() {
               </Card>
             )}
 
-            {activeTab !== 'overview' && activeTab !== 'inventory' && activeTab !== 'customers' && (
+            {activeTab === 'expenses' && (
               <Card className="p-12 text-center border-none shadow-lg">
-                <p className="text-slate-400 font-medium">This section is ready for data integration.</p>
+                <p className="text-slate-400 font-medium">{expenses.length} expenses logged.</p>
+              </Card>
+            )}
+
+            {activeTab === 'investments' && (
+              <Card className="p-12 text-center border-none shadow-lg">
+                <p className="text-slate-400 font-medium">{investments.length} investments logged.</p>
               </Card>
             )}
           </div>
