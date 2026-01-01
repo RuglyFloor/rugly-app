@@ -89,3 +89,37 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  ✓ Starting...
  ✓ Ready in 2.4s
  ⚠ Lockfile was successfully patched, please run "npm install" to ensure @next/swc dependencies are downloaded
+ ○ Compiling / ...
+ ✓ Compiled / in 5.9s
+ ⨯ [Error: ENOENT: no such file or directory, open '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.od0ca3scm8n'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.od0ca3scm8n'
+}
+ ○ Compiling /_error ...
+ ✓ Compiled /_error in 2.1s
+ ⨯ [Error: ENOENT: no such file or directory, open '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.81v0z6rbs2h'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.81v0z6rbs2h'
+}
+[Error: ENOENT: no such file or directory, open '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.od0ca3scm8n'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.od0ca3scm8n'
+}
+ ⨯ [Error: ENOENT: no such file or directory, open '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.cjsid87hfka'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.cjsid87hfka'
+}
+[Error: ENOENT: no such file or directory, open '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.212vjipaes3'] {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.212vjipaes3'
+}

@@ -59,7 +59,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url(&apos;https://www.transparenttextures.com/patterns/carbon-fibre.png&apos;)]" />
+          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-primary/20 blur-[150px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
@@ -223,7 +223,7 @@ export default function Home() {
                     </CardHeader>
                     <CardContent className="p-0 aspect-square relative bg-[#F5F5DC] flex items-center justify-center">
                       <div className="w-[85%] h-[85%] bg-white shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-slate-200/50 relative">
-                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url(&apos;https://www.transparenttextures.com/patterns/felt.png&apos;)]" />
+                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
                         <div className="text-center p-12 relative z-10">
                           <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                             <Upload className="h-10 w-10 text-primary" />
@@ -233,7 +233,7 @@ export default function Home() {
                       </div>
                       <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-black border shadow-xl flex items-center gap-2">
                         <div className="h-3 w-3 rounded-full bg-primary" />
-                        5&apos; x 7&apos; • WHITE BASE
+                        5' x 7' • WHITE BASE
                       </div>
                     </CardContent>
                   </Card>
@@ -274,11 +274,11 @@ export default function Home() {
                     </div>
                     <RadioGroup defaultValue="m" className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                       {[
-                        { id: "s", label: "SMALL", size: "4&apos; x 6&apos;", price: "$199" },
-                        { id: "m", label: "MEDIUM", size: "5&apos; x 7&apos;", price: "$249" },
-                        { id: "l", label: "LARGE", size: "6&apos; x 9&apos;", price: "$349" },
-                        { id: "h", label: "HUGE", size: "9&apos; x 12&apos;", price: "$599" },
-                        { id: "r", label: "ROUND", size: "5&apos; Round", price: "$229" },
+                        { id: "s", label: "SMALL", size: "4' x 6'", price: "$199" },
+                        { id: "m", label: "MEDIUM", size: "5' x 7'", price: "$249" },
+                        { id: "l", label: "LARGE", size: "6' x 9'", price: "$349" },
+                        { id: "h", label: "HUGE", size: "9' x 12'", price: "$599" },
+                        { id: "r", label: "ROUND", size: "5' Round", price: "$229" },
                       ].map((size) => (
                         <div key={size.id}>
                           <RadioGroupItem value={size.id} id={size.id} className="peer sr-only" />
@@ -355,7 +355,7 @@ export default function Home() {
                         Your image will be simplified to a single paint color on top of the rug base. Perfect for bold logos and lettering.
                       </TabsContent>
                       <TabsContent value="2" className="p-6 border-2 border-slate-100 rounded-2xl mt-4 text-sm text-muted-foreground font-medium leading-relaxed bg-white">
-                        We&apos;ll use two distinct paint colors for your design, adding depth and detail to your custom piece.
+                        We'll use two distinct paint colors for your design, adding depth and detail to your custom piece.
                       </TabsContent>
                     </Tabs>
                   </div>
@@ -404,7 +404,7 @@ export default function Home() {
 
                   <div className="space-y-2">
                     <Label htmlFor="vision" className="font-black text-xs tracking-widest uppercase">Your Vision / Inspiration</Label>
-                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you&apos;re going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
+                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you're going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
@@ -415,11 +415,11 @@ export default function Home() {
                           <SelectValue placeholder="Select a size" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="4x6">4&apos; x 6&apos;</SelectItem>
-                          <SelectItem value="5x8">5&apos; x 8&apos;</SelectItem>
-                          <SelectItem value="6x9">6&apos; x 9&apos;</SelectItem>
-                          <SelectItem value="9x12">9&apos; x 12&apos;</SelectItem>
-                          <SelectItem value="5round">5&apos; Round</SelectItem>
+                          <SelectItem value="4x6">4' x 6'</SelectItem>
+                          <SelectItem value="5x8">5' x 8'</SelectItem>
+                          <SelectItem value="6x9">6' x 9'</SelectItem>
+                          <SelectItem value="9x12">9' x 12'</SelectItem>
+                          <SelectItem value="5round">5' Round</SelectItem>
                           <SelectItem value="other">Other (Specify in vision)</SelectItem>
                         </SelectContent>
                       </Select>
@@ -468,7 +468,7 @@ export default function Home() {
                 </div>
                 <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
                   <p className="text-xl text-slate-200 font-medium leading-relaxed italic">
-                    &quot;The preview is accurate — but this is still hand work. Each rug has character. That’s the point.&quot;
+                    "The preview is accurate — but this is still hand work. Each rug has character. That’s the point."
                   </p>
                 </div>
               </div>
@@ -529,7 +529,7 @@ export default function Home() {
                     As a canvas artist with a background in interior design, he realized that flooring was either mass-produced and soulless, or custom-tufted and prohibitively expensive. Rugly is the middle ground. We use high-quality base rugs as our canvas and hand-paint every design in our studio.
                   </p>
                   <p>
-                    Whether it&apos;s a **Rugly Premium** original or a custom **Crugly** of your own design, you&apos;re getting a piece of hand-painted art that is built to be lived on.
+                    Whether it's a **Rugly Premium** original or a custom **Crugly** of your own design, you're getting a piece of hand-painted art that is built to be lived on.
                   </p>
                 </div>
                 <div className="mt-12 flex items-center gap-6 p-6 rounded-3xl bg-white/5 border border-white/10 w-fit">
