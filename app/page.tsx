@@ -209,11 +209,11 @@ export default function Home() {
                     </div>
                     <RadioGroup defaultValue="m" className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                       {[
-                        { id: "s", label: "SMALL", size: "4' x 6'", price: "$199" },
-                        { id: "m", label: "MEDIUM", size: "5' x 7'", price: "$249" },
-                        { id: "l", label: "LARGE", size: "6' x 9'", price: "$349" },
-                        { id: "h", label: "HUGE", size: "9' x 12'", price: "$599" },
-                        { id: "r", label: "ROUND", size: "5' Round", price: "$229" },
+                        { id: "s", label: "SMALL", size: "4&apos; x 6&apos;", price: "$199" },
+                        { id: "m", label: "MEDIUM", size: "5&apos; x 7&apos;", price: "$249" },
+                        { id: "l", label: "LARGE", size: "6&apos; x 9&apos;", price: "$349" },
+                        { id: "h", label: "HUGE", size: "9&apos; x 12&apos;", price: "$599" },
+                        { id: "r", label: "ROUND", size: "5&apos; Round", price: "$229" },
                       ].map((size) => (
                         <div key={size.id}>
                           <RadioGroupItem value={size.id} id={size.id} className="peer sr-only" />
@@ -339,7 +339,7 @@ export default function Home() {
 
                   <div className="space-y-2">
                     <Label htmlFor="vision" className="font-black text-xs tracking-widest uppercase">Your Vision / Inspiration</Label>
-                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you're going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
+                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you&apos;re going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
@@ -350,11 +350,11 @@ export default function Home() {
                           <SelectValue placeholder="Select a size" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="4x6">4' x 6'</SelectItem>
+                          <SelectItem value="4x6">4&apos; x 6&apos;</SelectItem>
                           <SelectItem value="5x8">5' x 8'</SelectItem>
-                          <SelectItem value="6x9">6' x 9'</SelectItem>
-                          <SelectItem value="9x12">9' x 12'</SelectItem>
-                          <SelectItem value="5round">5' Round</SelectItem>
+                          <SelectItem value="6x9">6&apos; x 9&apos;</SelectItem>
+                          <SelectItem value="9x12">9&apos; x 12&apos;</SelectItem>
+                          <SelectItem value="5round">5&apos; Round</SelectItem>
                           <SelectItem value="other">Other (Specify in vision)</SelectItem>
                         </SelectContent>
                       </Select>
@@ -403,7 +403,7 @@ export default function Home() {
                 </div>
                 <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
                   <p className="text-xl text-slate-200 font-medium leading-relaxed italic">
-                    &quot;The preview is accurate — but this is still hand work. Each rug has character. That’s the point.&quot;
+                    &quot;The preview is accurate — but this is still hand work. Each rug has character. That&rsquo;s the point.&quot;
                   </p>
                 </div>
               </div>
@@ -434,7 +434,7 @@ export default function Home() {
                 <div className="pt-8 border-t">
                   <p className="font-black text-xs tracking-[0.2em] mb-4 uppercase text-muted-foreground">Available Sizes</p>
                   <div className="flex flex-wrap gap-3">
-                    {["4×6", "5×8", "6×9", "5′ ROUND"].map((size) => (
+                    {["4&times;6", "5&times;8", "6&times;9", "5&prime; ROUND"].map((size) => (
                       <span key={size} className="px-4 py-2 rounded-full bg-slate-100 font-black text-sm">{size}</span>
                     ))}
                   </div>

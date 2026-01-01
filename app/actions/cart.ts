@@ -1,6 +1,7 @@
 'use server';
 
 import { shopifyFetch } from '@/lib/shopify';
+import { redirect } from 'next/navigation';
 
 export async function createCartAndRedirect(variantId: string) {
   const mutation = `
@@ -28,5 +29,6 @@ export async function createCartAndRedirect(variantId: string) {
     },
   });
 
-  return res.body.data.cartCreate.cart.checkoutUrl;
+  const checkoutUrl = res.body.data.cartCreate.cart.checkoutUrl;
+  redirect(checkoutUrl);
 }
