@@ -455,10 +455,10 @@ export default function Home() {
                 </h2>
                 <div className="space-y-6 text-lg text-slate-400 font-medium leading-relaxed">
                   <p>
-                    Rugly was born at the intersection of fine art and functional design. After honing his craft at the **School of the Art Institute of Chicago (S.A.I.C.)**, founder Ryan Hensley spent years designing commercial spaces, building unique Airbnbs, and creating brand identities.
+                    Rugly was born at the intersection of fine art and functional design. Founder Ryan Hensley brings years of experience in commercial space design, building unique Airbnbs, and creating brand identities to the most overlooked canvas in your home: the floor.
                   </p>
                   <p>
-                    As a canvas artist with a background in interior design, he realized the most overlooked canvas in any room was the floor. Rugly is the result—a middle ground between mass-produced flooring and prohibitively expensive custom-tufted rugs.
+                    As a canvas artist with a background in interior design, he realized that flooring was either mass-produced and soulless, or custom-tufted and prohibitively expensive. Rugly is the middle ground. We use high-quality base rugs as our canvas and hand-paint every design in our studio.
                   </p>
                   <p>
                     Whether it's a **Rugly Premium** original or a custom **Crugly** of your own design, you're getting a piece of hand-painted art that is built to be lived on.
