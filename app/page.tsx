@@ -59,7 +59,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
+          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url(&apos;https://www.transparenttextures.com/patterns/carbon-fibre.png&apos;)]" />
           <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-primary/20 blur-[150px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
@@ -170,7 +170,7 @@ export default function Home() {
                     </CardHeader>
                     <CardContent className="p-0 aspect-square relative bg-[#F5F5DC] flex items-center justify-center">
                       <div className="w-[85%] h-[85%] bg-white shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-slate-200/50 relative">
-                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
+                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url(&apos;https://www.transparenttextures.com/patterns/felt.png&apos;)]" />
                         <div className="text-center p-12 relative z-10">
                           <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                             <Upload className="h-10 w-10 text-primary" />
