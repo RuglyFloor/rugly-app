@@ -7,7 +7,7 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle, Star, Zap, Mail, MessageSquare } from "lucide-react";
+import { Palette, Upload, Ruler, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Truck, Info, AlertTriangle, Star, Zap, Mail, MessageSquare, Phone } from "lucide-react";
 import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
@@ -84,7 +84,7 @@ export default function Home() {
               {[
                 { title: "Studio Original #042", size: "6x9", price: "$899", tag: "1 of 1" },
                 { title: "Abstract Series: Detroit", size: "5x8", price: "$749", tag: "Limited" },
-                { title: "The SAIC Collection #01", size: "9x12", price: "$1,299", tag: "Artist Proof" }
+                { title: "The Studio Collection #01", size: "9x12", price: "$1,299", tag: "Artist Proof" }
               ].map((rug, i) => (
                 <Card key={i} className="overflow-hidden border-none shadow-xl group cursor-pointer">
                   <div className="aspect-[4/5] bg-slate-100 relative">
@@ -139,61 +139,8 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Two Ways to Order - Updated with Anchor */}
-        <section id="order-ways" className="py-24 bg-white">
-          <div className="container">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl font-black mb-4 tracking-tight uppercase">TWO WAYS TO ORDER</h2>
-              <div className="h-2 w-24 bg-primary mx-auto" />
-            </div>
-            <div className="grid md:grid-cols-2 gap-12">
-              <Card className="p-10 border-4 border-slate-100 hover:border-primary/20 transition-all group">
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">UPLOAD & ORDER (CRUGLY)</h3>
-                <p className="text-lg text-muted-foreground mb-8 font-medium">For bold, graphic designs where you know exactly what you want.</p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Upload your image",
-                    "Select size & base color",
-                    "1-color stencil included",
-                    "Optional 2-color overlay",
-                    "Preview before paying"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
-                      <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="w-full h-14 text-lg font-black tracking-widest" asChild>
-                  <a href="#crugly">UPLOAD IMAGE</a>
-                </Button>
-              </Card>
-
-              <Card className="p-10 border-4 border-slate-950 bg-slate-950 text-white group">
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">CUSTOM / SURPRISE ME</h3>
-                <p className="text-lg text-slate-400 mb-8 font-medium">You want taste, interpretation, and creative decisions made for you.</p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Upload inspiration or nothing at all",
-                    "Room photo recommended",
-                    "We design it",
-                    "You approve the quote",
-                    "We build it"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-bold text-slate-200">
-                      <Sparkles className="h-5 w-5 text-primary" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full h-14 text-lg font-black tracking-widest border-white/20 hover:bg-white/10" asChild>
-                  <a href="#custom-quote">REQUEST CUSTOM QUOTE</a>
-                </Button>
-              </Card>
-            </div>
-          </div>
-        </section>
-
         {/* Crugly (Custom) Section */}
-        <section id="crugly" className="py-24 bg-slate-50">
+        <section id="crugly" className="py-24 bg-white">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
               {/* Preview Area */}
@@ -503,15 +450,15 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div>
                 <h2 className="text-5xl lg:text-6xl font-bold mb-10 leading-tight tracking-tighter">
-                  FROM S.A.I.C. TO <br />
+                  FROM THE STUDIO TO <br />
                   <span className="text-primary">YOUR LIVING ROOM.</span>
                 </h2>
                 <div className="space-y-6 text-lg text-slate-400 font-medium leading-relaxed">
                   <p>
-                    Rugly was born at the intersection of fine art and functional design. With formal training from the **School of the Art Institute of Chicago (S.A.I.C.)**, founder Ryan Hensley brings a gallery-level eye to the most overlooked canvas in your home: the floor.
+                    Rugly was born at the intersection of fine art and functional design. After honing his craft at the **School of the Art Institute of Chicago (S.A.I.C.)**, founder Ryan Hensley spent years designing commercial spaces, building unique Airbnbs, and creating brand identities.
                   </p>
                   <p>
-                    We identified a massive gap in the market—flooring was either mass-produced and soulless, or custom-tufted and prohibitively expensive. Rugly is the middle ground. We use high-quality base rugs as our canvas and hand-paint every design in our studio.
+                    As a canvas artist with a background in interior design, he realized the most overlooked canvas in any room was the floor. Rugly is the result—a middle ground between mass-produced flooring and prohibitively expensive custom-tufted rugs.
                   </p>
                   <p>
                     Whether it's a **Rugly Premium** original or a custom **Crugly** of your own design, you're getting a piece of hand-painted art that is built to be lived on.
@@ -545,6 +492,11 @@ export default function Home() {
               <p className="text-muted-foreground font-medium max-w-sm leading-relaxed">
                 Hand-painted custom rugs for unique spaces. Durable, functional art for your floor.
               </p>
+              <div className="mt-8 space-y-4">
+                <a href="mailto:info@ruglyfloor.com" className="flex items-center gap-3 text-lg font-black tracking-widest hover:text-primary transition-colors">
+                  <Mail className="h-5 w-5 text-primary" /> info@ruglyfloor.com
+                </a>
+              </div>
             </div>
             <div>
               <h4 className="font-black text-xs tracking-[0.2em] mb-6 uppercase">Quick Links</h4>
