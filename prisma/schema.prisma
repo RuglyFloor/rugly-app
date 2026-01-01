@@ -10,7 +10,7 @@ datasource db {
 model InventoryItem {
   id        String   @id @default(cuid())
   name      String
-  type      String   // "Base Rug", "Finished Piece"
+  type      String
   size      String?
   color     String?
   quantity  Int      @default(0)
@@ -25,7 +25,7 @@ model Expense {
   date        DateTime @default(now())
   vendor      String
   amount      Decimal  @db.Decimal(10, 2)
-  category    String   // "Materials", "Shipping", "Studio", "Marketing", "Other"
+  category    String
   description String?
   receiptUrl  String?
   createdAt   DateTime @default(now())
