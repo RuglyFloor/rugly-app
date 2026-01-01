@@ -7,17 +7,15 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Textarea } from "@/components/ui/textarea";
-import { Upload, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Info, AlertTriangle, Star, Zap, Mail, MessageSquare, Phone } from "lucide-react";
+import { Upload, CheckCircle2, ArrowRight, ShoppingCart, Instagram, Facebook, ShieldCheck, Sparkles, Info, AlertTriangle, Star, Zap, Mail, MessageSquare } from "lucide-react";
 import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
-  // Placeholder variant IDs
   const CUSTOM_RUG_VARIANT_ID = "gid://shopify/ProductVariant/15638708912209"; 
   const READY_TO_SHIP_VARIANT_ID = "gid://shopify/ProductVariant/15631681880145";
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased">
-      {/* Navigation */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
@@ -30,9 +28,6 @@ export default function Home() {
             <a href="#about" className="transition-colors hover:text-primary">About</a>
           </nav>
           <div className="flex items-center gap-4">
-            <a href="tel:5177777844" className="hidden lg:flex items-center gap-2 text-sm font-black tracking-widest hover:text-primary transition-colors">
-              <Phone className="h-4 w-4" /> 517.777.RUG4
-            </a>
             <Button variant="ghost" size="sm" className="hidden sm:flex">Login</Button>
             <Button size="sm" className="bg-primary hover:bg-primary/90">Shop Now</Button>
           </div>
@@ -40,7 +35,6 @@ export default function Home() {
       </header>
 
       <main>
-        {/* Hero Section */}
         <section className="relative py-24 lg:py-40 overflow-hidden bg-slate-950 text-white">
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -62,11 +56,10 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url(&apos;https://www.transparenttextures.com/patterns/carbon-fibre.png&apos;)]" />
+          <div className="absolute top-0 left-0 -z-10 w-full h-full opacity-20 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
           <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-primary/20 blur-[150px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
-        {/* Rugly Premium Section */}
         <section id="rugly-premium" className="py-24 bg-white">
           <div className="container">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -117,7 +110,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Ready to Ship Section */}
         <section id="ready-to-ship" className="py-24 bg-slate-50">
           <div className="container">
             <div className="flex items-center gap-4 mb-12">
@@ -152,64 +144,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Two Ways to Order */}
-        <section id="order-ways" className="py-24 bg-white">
-          <div className="container">
-            <div className="text-center mb-20">
-              <h2 className="text-4xl font-black mb-4 tracking-tight uppercase">TWO WAYS TO ORDER</h2>
-              <div className="h-2 w-24 bg-primary mx-auto" />
-            </div>
-            <div className="grid md:grid-cols-2 gap-12">
-              <Card className="p-10 border-4 border-slate-100 hover:border-primary/20 transition-all group">
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">UPLOAD & ORDER (CRUGLY)</h3>
-                <p className="text-lg text-muted-foreground mb-8 font-medium">For bold, graphic designs where you know exactly what you want.</p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Upload your image",
-                    "Select size & base color",
-                    "1-color stencil included",
-                    "Optional 2-color overlay",
-                    "Preview before paying"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-bold text-slate-700">
-                      <CheckCircle2 className="h-5 w-5 text-primary" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button className="w-full h-14 text-lg font-black tracking-widest" asChild>
-                  <a href="#crugly">UPLOAD IMAGE</a>
-                </Button>
-              </Card>
-
-              <Card className="p-10 border-4 border-slate-950 bg-slate-950 text-white group">
-                <h3 className="text-3xl font-black mb-6 uppercase tracking-tighter">CUSTOM / SURPRISE ME</h3>
-                <p className="text-lg text-slate-400 mb-8 font-medium">You want taste, interpretation, and creative decisions made for you.</p>
-                <ul className="space-y-4 mb-10">
-                  {[
-                    "Upload inspiration or nothing at all",
-                    "Room photo recommended",
-                    "We design it",
-                    "You approve the quote",
-                    "We build it"
-                  ].map((item, i) => (
-                    <li key={i} className="flex items-center gap-3 font-bold text-slate-200">
-                      <Sparkles className="h-5 w-5 text-primary" /> {item}
-                    </li>
-                  ))}
-                </ul>
-                <Button variant="outline" className="w-full h-14 text-lg font-black tracking-widest border-white/20 hover:bg-white/10" asChild>
-                  <a href="#custom-quote">REQUEST CUSTOM QUOTE</a>
-                </Button>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Crugly (Custom) Section */}
-        <section id="crugly" className="py-24 bg-slate-50">
+        <section id="crugly" className="py-24 bg-white">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
-              {/* Preview Area */}
               <div className="lg:sticky lg:top-24">
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-primary to-teal-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -226,7 +163,7 @@ export default function Home() {
                     </CardHeader>
                     <CardContent className="p-0 aspect-square relative bg-[#F5F5DC] flex items-center justify-center">
                       <div className="w-[85%] h-[85%] bg-white shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-slate-200/50 relative">
-                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url(&apos;https://www.transparenttextures.com/patterns/felt.png&apos;)]" />
+                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
                         <div className="text-center p-12 relative z-10">
                           <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                             <Upload className="h-10 w-10 text-primary" />
@@ -258,7 +195,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Configuration Form */}
               <div className="space-y-12">
                 <div>
                   <div className="flex items-center gap-2 mb-4">
@@ -269,7 +205,6 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-10">
-                  {/* Step 1: Size */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">01</div>
@@ -277,11 +212,11 @@ export default function Home() {
                     </div>
                     <RadioGroup defaultValue="m" className="grid grid-cols-2 sm:grid-cols-3 gap-4">
                       {[
-                        { id: "s", label: "SMALL", size: "4&apos; x 6&apos;", price: "$199" },
-                        { id: "m", label: "MEDIUM", size: "5&apos; x 7&apos;", price: "$249" },
-                        { id: "l", label: "LARGE", size: "6&apos; x 9&apos;", price: "$349" },
-                        { id: "h", label: "HUGE", size: "9&apos; x 12&apos;", price: "$599" },
-                        { id: "r", label: "ROUND", size: "5&apos; Round", price: "$229" },
+                        { id: "s", label: "SMALL", size: "4' x 6'", price: "$199" },
+                        { id: "m", label: "MEDIUM", size: "5' x 7'", price: "$249" },
+                        { id: "l", label: "LARGE", size: "6' x 9'", price: "$349" },
+                        { id: "h", label: "HUGE", size: "9' x 12'", price: "$599" },
+                        { id: "r", label: "ROUND", size: "5' Round", price: "$229" },
                       ].map((size) => (
                         <div key={size.id}>
                           <RadioGroupItem value={size.id} id={size.id} className="peer sr-only" />
@@ -298,7 +233,6 @@ export default function Home() {
                     </RadioGroup>
                   </div>
 
-                  {/* Step 2: Base Color */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">02</div>
@@ -324,7 +258,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Step 3: Upload Image */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">03</div>
@@ -343,7 +276,6 @@ export default function Home() {
                     </div>
                   </div>
 
-                  {/* Step 4: Color Simplification */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">04</div>
@@ -377,7 +309,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Custom Quote Form Section */}
         <section id="custom-quote" className="py-24 bg-white">
           <div className="container">
             <div className="max-w-4xl mx-auto">
@@ -407,7 +338,7 @@ export default function Home() {
 
                   <div className="space-y-2">
                     <Label htmlFor="vision" className="font-black text-xs tracking-widest uppercase">Your Vision / Inspiration</Label>
-                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you&apos;re going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
+                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you're going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
@@ -418,11 +349,11 @@ export default function Home() {
                           <SelectValue placeholder="Select a size" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="4x6">4&apos; x 6&apos;</SelectItem>
-                          <SelectItem value="5x8">5&apos; x 8&apos;</SelectItem>
-                          <SelectItem value="6x9">6&apos; x 9&apos;</SelectItem>
-                          <SelectItem value="9x12">9&apos; x 12&apos;</SelectItem>
-                          <SelectItem value="5round">5&apos; Round</SelectItem>
+                          <SelectItem value="4x6">4' x 6'</SelectItem>
+                          <SelectItem value="5x8">5' x 8'</SelectItem>
+                          <SelectItem value="6x9">6' x 9'</SelectItem>
+                          <SelectItem value="9x12">9' x 12'</SelectItem>
+                          <SelectItem value="5round">5' Round</SelectItem>
                           <SelectItem value="other">Other (Specify in vision)</SelectItem>
                         </SelectContent>
                       </Select>
@@ -446,7 +377,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Read This Before Ordering */}
         <section className="py-24 bg-slate-950 text-white">
           <div className="container">
             <div className="max-w-4xl mx-auto">
@@ -479,7 +409,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Base Rug Details */}
         <section className="py-24 bg-white">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -515,7 +444,6 @@ export default function Home() {
           </div>
         </section>
 
-        {/* About Section */}
         <section id="about" className="py-32 bg-slate-950 text-white overflow-hidden relative">
           <div className="container relative z-10">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -564,9 +492,6 @@ export default function Home() {
                 Hand-painted custom rugs for unique spaces. Durable, functional art for your floor.
               </p>
               <div className="mt-8 space-y-4">
-                <a href="tel:5177777844" className="flex items-center gap-3 text-lg font-black tracking-widest hover:text-primary transition-colors">
-                  <Phone className="h-5 w-5 text-primary" /> 517.777.RUG4
-                </a>
                 <a href="mailto:info@ruglyfloor.com" className="flex items-center gap-3 text-lg font-black tracking-widest hover:text-primary transition-colors">
                   <Mail className="h-5 w-5 text-primary" /> info@ruglyfloor.com
                 </a>
