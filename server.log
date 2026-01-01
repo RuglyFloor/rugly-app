@@ -79,3 +79,13 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  ✓ Compiled in 133ms
  ✓ Compiled in 494ms
  ✓ Compiled in 162ms
+ ⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+ ⚠ Found lockfile missing swc dependencies, patching...
+   ▲ Next.js 15.5.6 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.0.21:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 2.4s
+ ⚠ Lockfile was successfully patched, please run "npm install" to ensure @next/swc dependencies are downloaded
