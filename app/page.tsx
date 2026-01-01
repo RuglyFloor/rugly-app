@@ -511,6 +511,7 @@ export default function Home() {
                 <li><a href="#ready-to-ship" className="hover:text-primary transition-colors">READY TO SHIP</a></li>
                 <li><a href="#crugly" className="hover:text-primary transition-colors">CRUGLY (CUSTOM)</a></li>
                 <li><a href="#about" className="hover:text-primary transition-colors">ABOUT US</a></li>
+                <li><a href="/studio" className="hover:text-primary transition-colors opacity-20">STUDIO LOGIN</a></li>
               </ul>
             </div>
             <div>

@@ -71,3 +71,9 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
  GET / 200 in 321ms
  ✓ Compiled in 234ms
  GET / 200 in 799ms
+   Reload env: .env
+   Reload env: .env
+   Reload env: .env
+   Reload env: .env
+ ✓ Compiled in 196ms
+ ✓ Compiled in 133ms

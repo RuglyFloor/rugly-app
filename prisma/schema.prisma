@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model InventoryItem {
+  id        String   @id @default(cuid())
+  name      String
+  type      String   // "Base Rug", "Finished Piece"
+  size      String?
+  color     String?
+  quantity  Int      @default(0)
+  cost      Decimal? @db.Decimal(10, 2)
+  price     Decimal? @db.Decimal(10, 2)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Expense {
+  id          String   @id @default(cuid())
+  date        DateTime @default(now())
+  vendor      String
+  amount      Decimal  @db.Decimal(10, 2)
+  category    String   // "Materials", "Shipping", "Studio", "Marketing", "Other"
+  description String?
+  receiptUrl  String?
+  createdAt   DateTime @default(now())
+}
+
+model Investment {
+  id          String   @id @default(cuid())
+  date        DateTime @default(now())
+  item        String
+  amount      Decimal  @db.Decimal(10, 2)
+  description String?
+  createdAt   DateTime @default(now())
+}
+
+model Customer {
+  id        String   @id @default(cuid())
+  name      String
+  email     String?  @unique
+  phone     String?
+  notes     String?
+  createdAt DateTime @default(now())
+}
