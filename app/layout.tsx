@@ -14,6 +14,7 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://ruglyfloor.com'),
   title: "Rugly | Custom-Painted Rugs",
   description: "Transform your space with hand-painted, customized rugs. Upload your design and we'll bring it to life on a high-quality base.",
   openGraph: {

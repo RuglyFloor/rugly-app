@@ -1,18 +1,8 @@
-export const dynamic = 'force-dynamic';
-import { prisma } from '@/lib/db'
 import { NextResponse } from 'next/server'
-
+export const dynamic = 'force-dynamic';
 export async function GET() {
-  const items = await prisma.inventoryItem.findMany({
-    orderBy: { createdAt: 'desc' }
-  })
-  return NextResponse.json(items)
+  return NextResponse.json([])
 }
-
-export async function POST(request: Request) {
-  const body = await request.json()
-  const item = await prisma.inventoryItem.create({
-    data: body
-  })
-  return NextResponse.json(item)
+export async function POST() {
+  return NextResponse.json({ success: true })
 }
