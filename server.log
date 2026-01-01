@@ -123,3 +123,4 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
   syscall: 'open',
   path: '/home/code/rugly-app/.next/static/development/_buildManifest.js.tmp.212vjipaes3'
 }
+ ✓ Compiled in 253ms
