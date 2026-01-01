@@ -30,6 +30,9 @@ export default function Home() {
             <a href="#about" className="transition-colors hover:text-primary">About</a>
           </nav>
           <div className="flex items-center gap-4">
+            <a href="tel:5177777844" className="hidden lg:flex items-center gap-2 text-sm font-black tracking-widest hover:text-primary transition-colors">
+              <Phone className="h-4 w-4" /> 517.777.RUG4
+            </a>
             <Button variant="ghost" size="sm" className="hidden sm:flex">Login</Button>
             <Button size="sm" className="bg-primary hover:bg-primary/90">Shop Now</Button>
           </div>
@@ -493,6 +496,9 @@ export default function Home() {
                 Hand-painted custom rugs for unique spaces. Durable, functional art for your floor.
               </p>
               <div className="mt-8 space-y-4">
+                <a href="tel:5177777844" className="flex items-center gap-3 text-lg font-black tracking-widest hover:text-primary transition-colors">
+                  <Phone className="h-5 w-5 text-primary" /> 517.777.RUG4
+                </a>
                 <a href="mailto:info@ruglyfloor.com" className="flex items-center gap-3 text-lg font-black tracking-widest hover:text-primary transition-colors">
                   <Mail className="h-5 w-5 text-primary" /> info@ruglyfloor.com
                 </a>
