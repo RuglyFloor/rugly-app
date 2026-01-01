@@ -1,4 +1,7 @@
+'use client';
+
 import Image from "next/image";
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -12,6 +15,32 @@ import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
   const CUSTOM_RUG_VARIANT_ID = "gid://shopify/ProductVariant/15638708912209"; 
+  const [selectedSize, setSelectedSize] = useState('m');
+  const [selectedColor, setSelectedColor] = useState('White');
+  const [selectedColorsCount, setSelectedColorsCount] = useState('1');
+
+  const sizes = [
+    { id: "s", label: "SMALL", size: "4' x 6'", price: 199 },
+    { id: "m", label: "MEDIUM", size: "5' x 7'", price: 249 },
+    { id: "l", label: "LARGE", size: "6' x 9'", price: 349 },
+    { id: "h", label: "HUGE", size: "9' x 12'", price: 599 },
+    { id: "r", label: "ROUND", size: "5' Round", price: 229 },
+  ];
+
+  const colors = [
+    { name: "White", hex: "bg-white", image: "/images/base-white.png" },
+    { name: "Cream", hex: "bg-[#F5F5DC]", image: "/images/base-cream.png" },
+    { name: "Grey", hex: "bg-gray-400", image: "/images/base-grey.png" },
+    { name: "Black", hex: "bg-black", image: "/images/base-black.png" },
+    { name: "Navy", hex: "bg-blue-900", image: "/images/base-navy.png" },
+    { name: "Sage", hex: "bg-emerald-800", image: "/images/base-sage.png" }
+  ];
+
+  const currentSize = sizes.find(s => s.id === selectedSize);
+  const currentColor = colors.find(c => c.name === selectedColor);
+  const basePrice = currentSize?.price || 0;
+  const colorExtra = selectedColorsCount === '2' ? 35 : 0;
+  const totalPrice = basePrice + colorExtra;
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased">
@@ -156,19 +185,26 @@ export default function Home() {
                         </div>
                       </div>
                     </CardHeader>
-                    <CardContent className="p-0 aspect-square relative bg-[#F5F5DC] flex items-center justify-center">
-                      <div className="w-[85%] h-[85%] bg-white shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-slate-200/50 relative">
-                        <div className="absolute inset-0 opacity-10 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/felt.png')]" />
+                    <CardContent className="p-0 aspect-square relative bg-slate-100 flex items-center justify-center">
+                      <div className="absolute inset-0">
+                        <Image 
+                          src={currentColor?.image || "/images/base-white.png"} 
+                          alt="Rug Base" 
+                          fill 
+                          className="object-cover"
+                        />
+                      </div>
+                      <div className="w-[85%] h-[85%] bg-white/20 backdrop-blur-[1px] shadow-inner rounded-sm flex items-center justify-center overflow-hidden border-[12px] border-white/10 relative">
                         <div className="text-center p-12 relative z-10">
-                          <div className="h-20 w-20 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                            <Upload className="h-10 w-10 text-primary" />
+                          <div className="h-20 w-20 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <Upload className="h-10 w-10 text-white" />
                           </div>
-                          <p className="text-slate-400 font-bold uppercase tracking-widest text-sm">Upload Your Art</p>
+                          <p className="text-white font-bold uppercase tracking-widest text-sm drop-shadow-md">Upload Your Art</p>
                         </div>
                       </div>
                       <div className="absolute bottom-8 right-8 bg-white/90 backdrop-blur-md px-4 py-2 rounded-xl text-xs font-black border shadow-xl flex items-center gap-2">
                         <div className="h-3 w-3 rounded-full bg-primary" />
-                        5&apos; x 7&apos; • WHITE BASE
+                        {currentSize?.size} • {selectedColor.toUpperCase()} BASE
                       </div>
                     </CardContent>
                   </Card>
@@ -177,15 +213,15 @@ export default function Home() {
                 <div className="mt-8 grid grid-cols-3 gap-4">
                   <div className="p-5 rounded-2xl border bg-white shadow-sm text-center">
                     <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest mb-2">Base Price</p>
-                    <p className="text-2xl font-bold">$249</p>
+                    <p className="text-2xl font-bold">${basePrice}</p>
                   </div>
                   <div className="p-5 rounded-2xl border bg-white shadow-sm text-center">
                     <p className="text-[10px] text-muted-foreground uppercase font-black tracking-widest mb-2">Colors</p>
-                    <p className="text-2xl font-bold">1 Incl.</p>
+                    <p className="text-2xl font-bold">{selectedColorsCount} {selectedColorsCount === '1' ? 'Incl.' : '+$35'}</p>
                   </div>
                   <div className="p-5 rounded-2xl border-2 border-primary bg-primary/5 shadow-sm text-center">
                     <p className="text-[10px] text-primary uppercase font-black tracking-widest mb-2">Total</p>
-                    <p className="text-2xl font-bold text-primary">$249</p>
+                    <p className="text-2xl font-bold text-primary">${totalPrice}</p>
                   </div>
                 </div>
               </div>
@@ -207,14 +243,8 @@ export default function Home() {
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">01</div>
                       <Label className="text-xl font-bold tracking-tight">SELECT SIZE</Label>
                     </div>
-                    <RadioGroup defaultValue="m" className="grid grid-cols-2 sm:grid-cols-3 gap-4">
-                      {[
-                        { id: "s", label: "SMALL", size: "4&apos; x 6&apos;", price: "$199" },
-                        { id: "m", label: "MEDIUM", size: "5&apos; x 7&apos;", price: "$249" },
-                        { id: "l", label: "LARGE", size: "6&apos; x 9&apos;", price: "$349" },
-                        { id: "h", label: "HUGE", size: "9&apos; x 12&apos;", price: "$599" },
-                        { id: "r", label: "ROUND", size: "5&apos; Round", price: "$229" },
-                      ].map((size) => (
+                    <RadioGroup value={selectedSize} onValueChange={setSelectedSize} className="grid grid-cols-2 sm:grid-cols-3 gap-4">
+                      {sizes.map((size) => (
                         <div key={size.id}>
                           <RadioGroupItem value={size.id} id={size.id} className="peer sr-only" />
                           <Label
@@ -223,7 +253,7 @@ export default function Home() {
                           >
                             <span className="text-xs font-black tracking-widest mb-1">{size.label}</span>
                             <span className="text-sm text-muted-foreground font-medium mb-3">{size.size}</span>
-                            <span className="text-lg font-bold text-primary">{size.price}</span>
+                            <span className="text-lg font-bold text-primary">${size.price}</span>
                           </Label>
                         </div>
                       ))}
@@ -237,20 +267,14 @@ export default function Home() {
                       <Label className="text-xl font-bold tracking-tight">BASE COLOR</Label>
                     </div>
                     <div className="grid grid-cols-4 sm:grid-cols-6 gap-4">
-                      {[
-                        { name: "White", hex: "bg-white" },
-                        { name: "Cream", hex: "bg-[#F5F5DC]" },
-                        { name: "Grey", hex: "bg-gray-400" },
-                        { name: "Black", hex: "bg-black" },
-                        { name: "Navy", hex: "bg-blue-900" },
-                        { name: "Sage", hex: "bg-emerald-800" }
-                      ].map((color) => (
+                      {colors.map((color) => (
                         <button
                           key={color.name}
-                          className="group flex flex-col items-center gap-3"
+                          onClick={() => setSelectedColor(color.name)}
+                          className={`group flex flex-col items-center gap-3 ${selectedColor === color.name ? 'scale-110' : ''}`}
                         >
-                          <div className={`h-14 w-14 rounded-2xl border-2 border-muted group-hover:border-primary group-hover:scale-110 transition-all duration-200 shadow-sm ${color.hex}`} />
-                          <span className="text-[10px] font-black uppercase tracking-widest text-muted-foreground">{color.name}</span>
+                          <div className={`h-14 w-14 rounded-2xl border-2 ${selectedColor === color.name ? 'border-primary ring-4 ring-primary/10' : 'border-muted'} group-hover:border-primary transition-all duration-200 shadow-sm ${color.hex}`} />
+                          <span className={`text-[10px] font-black uppercase tracking-widest ${selectedColor === color.name ? 'text-primary' : 'text-muted-foreground'}`}>{color.name}</span>
                         </button>
                       ))}
                     </div>
@@ -281,7 +305,7 @@ export default function Home() {
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">04</div>
                       <Label className="text-xl font-bold tracking-tight">DESIGN COLORS</Label>
                     </div>
-                    <Tabs defaultValue="1" className="w-full">
+                    <Tabs value={selectedColorsCount} onValueChange={setSelectedColorsCount} className="w-full">
                       <TabsList className="grid w-full grid-cols-2 h-14 p-1 bg-slate-100 rounded-xl">
                         <TabsTrigger value="1" className="rounded-lg font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">1 COLOR (INCL.)</TabsTrigger>
                         <TabsTrigger value="2" className="rounded-lg font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">2 COLORS (+$35)</TabsTrigger>
@@ -296,7 +320,6 @@ export default function Home() {
                   </div>
 
                   <form action={async () => {
-                    'use server';
                     await createCartAndRedirect(CUSTOM_RUG_VARIANT_ID);
                   }}>
                     <Button className="w-full h-16 text-xl font-black tracking-widest bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/30 rounded-2xl">
@@ -339,7 +362,7 @@ export default function Home() {
 
                   <div className="space-y-2">
                     <Label htmlFor="vision" className="font-black text-xs tracking-widest uppercase">Your Vision / Inspiration</Label>
-                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you&apos;re going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
+                    <Textarea id="vision" placeholder="Tell us about your space, the vibe you're going for, or any specific elements you want included..." className="min-h-[150px] border-2" />
                   </div>
 
                   <div className="grid md:grid-cols-2 gap-8">
@@ -350,11 +373,11 @@ export default function Home() {
                           <SelectValue placeholder="Select a size" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="4x6">4&apos; x 6&apos;</SelectItem>
+                          <SelectItem value="4x6">4' x 6'</SelectItem>
                           <SelectItem value="5x8">5' x 8'</SelectItem>
-                          <SelectItem value="6x9">6&apos; x 9&apos;</SelectItem>
-                          <SelectItem value="9x12">9&apos; x 12&apos;</SelectItem>
-                          <SelectItem value="5round">5&apos; Round</SelectItem>
+                          <SelectItem value="6x9">6' x 9'</SelectItem>
+                          <SelectItem value="9x12">9' x 12'</SelectItem>
+                          <SelectItem value="5round">5' Round</SelectItem>
                           <SelectItem value="other">Other (Specify in vision)</SelectItem>
                         </SelectContent>
                       </Select>
@@ -403,7 +426,7 @@ export default function Home() {
                 </div>
                 <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
                   <p className="text-xl text-slate-200 font-medium leading-relaxed italic">
-                    &quot;The preview is accurate — but this is still hand work. Each rug has character. That&rsquo;s the point.&quot;
+                    &quot;The preview is accurate — but this is still hand work. Each rug has character. That’s the point.&quot;
                   </p>
                 </div>
               </div>
@@ -434,7 +457,7 @@ export default function Home() {
                 <div className="pt-8 border-t">
                   <p className="font-black text-xs tracking-[0.2em] mb-4 uppercase text-muted-foreground">Available Sizes</p>
                   <div className="flex flex-wrap gap-3">
-                    {["4&times;6", "5&times;8", "6&times;9", "5&prime; ROUND"].map((size) => (
+                    {["4×6", "5×8", "6×9", "5′ ROUND"].map((size) => (
                       <span key={size} className="px-4 py-2 rounded-full bg-slate-100 font-black text-sm">{size}</span>
                     ))}
                   </div>
