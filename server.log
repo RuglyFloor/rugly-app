@@ -125,3 +125,11 @@ Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allow
 }
  ✓ Compiled in 253ms
  ✓ Compiled in 132ms
+ ⚠ Found a change in next.config.mjs. Restarting the server to apply the changes...
+   ▲ Next.js 15.5.6 (Turbopack)
+   - Local:        http://localhost:3000
+   - Network:      http://169.254.0.21:3000
+   - Environments: .env.local, .env
+
+ ✓ Starting...
+ ✓ Ready in 1535ms
