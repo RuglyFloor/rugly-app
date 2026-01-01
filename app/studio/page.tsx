@@ -5,19 +5,27 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { LayoutDashboard, Package, Receipt, TrendingUp, Users, Plus, LogOut, Lock } from "lucide-react";
+
+interface InventoryItem {
+  id: string;
+  name: string;
+  type: string;
+  size: string | null;
+  quantity: number;
+  cost: number | null;
+}
 
 export default function StudioDashboard() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [password, setPassword] = useState('');
   const [activeTab, setActiveTab] = useState('overview');
   
-  const [inventory, setInventory] = useState([]);
-  const [expenses, setExpenses] = useState([]);
-  const [investments, setInvestments] = useState([]);
-  const [customers, setCustomers] = useState([]);
+  const [inventory, setInventory] = useState<InventoryItem[]>([]);
+  const [expenses, setExpenses] = useState<unknown[]>([]);
+  const [investments, setInvestments] = useState<unknown[]>([]);
+  const [customers, setCustomers] = useState<unknown[]>([]);
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();
@@ -140,11 +148,11 @@ export default function StudioDashboard() {
                 </Card>
                 <Card className="p-8 border-none shadow-lg">
                   <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Monthly Expenses</p>
-                  <p className="text-4xl font-black text-red-500">$0.00</p>
+                  <p className="text-4xl font-black text-red-500">${expenses.length > 0 ? '...' : '0.00'}</p>
                 </Card>
                 <Card className="p-8 border-none shadow-lg">
                   <p className="text-xs font-black text-slate-400 uppercase tracking-widest mb-2">Total Investments</p>
-                  <p className="text-4xl font-black text-primary">$0.00</p>
+                  <p className="text-4xl font-black text-primary">${investments.length > 0 ? '...' : '0.00'}</p>
                 </Card>
               </div>
             )}
@@ -167,7 +175,7 @@ export default function StudioDashboard() {
                         <TableCell colSpan={5} className="text-center py-12 text-slate-400 font-medium">No inventory items found.</TableCell>
                       </TableRow>
                     ) : (
-                      inventory.map((item: any) => (
+                      inventory.map((item) => (
                         <TableRow key={item.id}>
                           <TableCell className="font-bold">{item.name}</TableCell>
                           <TableCell>{item.type}</TableCell>
@@ -182,8 +190,13 @@ export default function StudioDashboard() {
               </Card>
             )}
 
-            {/* Other tabs would follow similar patterns */}
-            {activeTab !== 'overview' && activeTab !== 'inventory' && (
+            {activeTab === 'customers' && (
+              <Card className="p-12 text-center border-none shadow-lg">
+                <p className="text-slate-400 font-medium">{customers.length} customers in database.</p>
+              </Card>
+            )}
+
+            {activeTab !== 'overview' && activeTab !== 'inventory' && activeTab !== 'customers' && (
               <Card className="p-12 text-center border-none shadow-lg">
                 <p className="text-slate-400 font-medium">This section is ready for data integration.</p>
               </Card>

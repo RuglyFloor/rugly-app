@@ -1,4 +1,4 @@
-export async function shopifyFetch({ query, variables = {} }: { query: string, variables?: any }) {
+export async function shopifyFetch({ query, variables = {} }: { query: string, variables?: Record<string, unknown> }) {
   const endpoint = `https://${process.env.NEXT_PUBLIC_SHOPIFY_STORE}/api/2025-01/graphql.json`;
   const key = process.env.SHOPIFY_STOREFRONT_ACCESS_TOKEN;
 
