@@ -12,10 +12,10 @@ import { createCartAndRedirect } from "./actions/cart";
 
 export default function Home() {
   const CUSTOM_RUG_VARIANT_ID = "gid://shopify/ProductVariant/15638708912209"; 
-  const READY_TO_SHIP_VARIANT_ID = "gid://shopify/ProductVariant/15631681880145";
 
   return (
     <div className="min-h-screen bg-background font-sans antialiased">
+      {/* Navigation */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center gap-4">
@@ -35,6 +35,7 @@ export default function Home() {
       </header>
 
       <main>
+        {/* Hero Section */}
         <section className="relative py-24 lg:py-40 overflow-hidden bg-slate-950 text-white">
           <div className="container relative z-10">
             <div className="max-w-4xl mx-auto text-center">
@@ -60,6 +61,7 @@ export default function Home() {
           <div className="absolute bottom-0 right-0 -z-10 w-96 h-96 bg-primary/20 blur-[150px] rounded-full translate-x-1/3 translate-y-1/3" />
         </section>
 
+        {/* Rugly Premium Section */}
         <section id="rugly-premium" className="py-24 bg-white">
           <div className="container">
             <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
@@ -96,12 +98,7 @@ export default function Home() {
                     <p className="text-muted-foreground font-bold text-sm mb-4">{rug.size} · Hand-Painted Canvas</p>
                     <div className="flex justify-between items-center">
                       <span className="text-2xl font-black text-primary">{rug.price}</span>
-                      <form action={async () => {
-                        'use server';
-                        await createCartAndRedirect(READY_TO_SHIP_VARIANT_ID);
-                      }}>
-                        <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
-                      </form>
+                      <Button size="sm" className="font-black tracking-widest">BUY NOW</Button>
                     </div>
                   </CardContent>
                 </Card>
@@ -110,6 +107,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Ready to Ship Section */}
         <section id="ready-to-ship" className="py-24 bg-slate-50">
           <div className="container">
             <div className="flex items-center gap-4 mb-12">
@@ -130,12 +128,7 @@ export default function Home() {
                     <p className="text-muted-foreground font-medium mb-6">{item.desc}</p>
                     <div className="flex items-center gap-6">
                       <span className="text-2xl font-black text-primary">{item.price}</span>
-                      <form action={async () => {
-                        'use server';
-                        await createCartAndRedirect(READY_TO_SHIP_VARIANT_ID);
-                      }}>
-                        <Button className="font-black tracking-widest">GRAB IT</Button>
-                      </form>
+                      <Button className="font-black tracking-widest">GRAB IT</Button>
                     </div>
                   </div>
                 </Card>
@@ -144,9 +137,11 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Crugly (Custom) Section */}
         <section id="crugly" className="py-24 bg-white">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-16 items-start">
+              {/* Preview Area */}
               <div className="lg:sticky lg:top-24">
                 <div className="relative group">
                   <div className="absolute -inset-1 bg-gradient-to-r from-primary to-teal-500 rounded-2xl blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
@@ -195,6 +190,7 @@ export default function Home() {
                 </div>
               </div>
 
+              {/* Configuration Form */}
               <div className="space-y-12">
                 <div>
                   <div className="flex items-center gap-2 mb-4">
@@ -205,6 +201,7 @@ export default function Home() {
                 </div>
 
                 <div className="space-y-10">
+                  {/* Step 1: Size */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">01</div>
@@ -233,6 +230,7 @@ export default function Home() {
                     </RadioGroup>
                   </div>
 
+                  {/* Step 2: Base Color */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">02</div>
@@ -258,6 +256,7 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Step 3: Upload Image */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">03</div>
@@ -276,6 +275,7 @@ export default function Home() {
                     </div>
                   </div>
 
+                  {/* Step 4: Color Simplification */}
                   <div className="space-y-6">
                     <div className="flex items-center gap-3">
                       <div className="h-8 w-8 rounded-xl bg-primary text-primary-foreground flex items-center justify-center text-sm font-black">04</div>
@@ -309,6 +309,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Custom Quote Form Section */}
         <section id="custom-quote" className="py-24 bg-white">
           <div className="container">
             <div className="max-w-4xl mx-auto">
@@ -377,6 +378,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Read This Before Ordering */}
         <section className="py-24 bg-slate-950 text-white">
           <div className="container">
             <div className="max-w-4xl mx-auto">
@@ -409,6 +411,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Base Rug Details */}
         <section className="py-24 bg-white">
           <div className="container">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -444,6 +447,7 @@ export default function Home() {
           </div>
         </section>
 
+        {/* About Section */}
         <section id="about" className="py-32 bg-slate-950 text-white overflow-hidden relative">
           <div className="container relative z-10">
             <div className="grid lg:grid-cols-2 gap-20 items-center">
